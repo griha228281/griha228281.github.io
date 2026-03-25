@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог товаров - Тверь Центральный</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('5.jpg'); /* Фоновое фото */
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для контента */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header img {
+            width: 150px; /* Размер Логотипа */
+            height: 150px;
+            border-radius: 50%; /* Круглый Логотип */
+            margin-bottom: 15px;
+            border: 5px solid #808080; /* Обводка Логотипа */
+        }
+        header h1 {
+            color: #f5fffa; /* Цвет заголовка */
+            font-size: 3em;
+            margin: 0;
+        }
+        .city-name {
+            color: #ffffff; /* Цвет названия города */
+            font-size: 1.5em;
+            margin-top: 5px;
+        }
+        .catalog {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        .product-card img {
+            max-width: 100%;
+            height: 200px; /* Фиксированная высота изображений товаров */
+            object-fit: cover; /* Масштабирование с сохранением пропорций */
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .product-card h3 {
+            font-size: 1.3em;
+            color: #474a51;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            font-size: 0.95em;
+            color: #474a51;
+            margin-bottom: 15px;
+            flex-grow: 1; /* Позволяет описанию занимать доступное пространство */
+        }
+        .price {
+            font-size: 1.4em;
+            color: #474a51;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Стили для кнопок выбора категорий */
+        .category-buttons {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .category-button {
+            background-color: #8a9597; /* Серый цвет, соответствующий футеру */
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+            margin: 0 5px; /* Отступ между кнопками */
+        }
+        .category-button:hover {
+            background-color: #2c2f33; /* Цвет при наведении */
+        }
+
+        .buy-button {
+            display: inline-block;
+            background-color: #474a51;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none; /* Убираем границу по умолчанию */
+        }
+        .buy-button:hover {
+            background-color: #2c2f33; /* Цвет при наведении */
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #8a9597; /* Светло-серый цвет */
+            color: white; /* Цвет текста белый для лучшей читаемости на сером фоне */
+            font-size: 0.9em;
+            border-radius: 10px;
+        }
+        .order-info {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff; /* Фон для информации о заказе */
+            border-radius: 8px;
+            border: 2px dashed #474a51; /* Пунктирная обводка */
+            display: none; /* Скрыт по умолчанию */
+        }
+        .order-info h2, .order-info h3 {
+            color: #474a51;
+            margin-top: 0;
+        }
+        .order-info p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .order-info a {
+            color: #474a51;
+            font-weight: bold;
+        }
+        .order-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="logo.jpg" alt="BLOOD"> <!-- Замените logo.jpg на ваш файл Логотипа -->
+            <h1>Добро пожаловать в каталог!</h1>
+            <div class="city-name">Тверь Центральный</div>
+        </header>
+
+        <main>
+            <div class="catalog">
+                <!-- Пример товара 1 -->
+                <div class="product-card" data-product-id="P001">
+                    <img src="ty.jpg" alt="Изображение товара 1"> <!-- Замените ty.jpg -->
+                    <h3>¥ !Работа!</h3>
+                    <p>
+                        ➤ Залог 16000
+                    </p>
+                    <div class="price">16000 руб.</div>
+                    <!-- Добавляем кнопки выбора категорий -->
+                    <div class="category-buttons">
+                        <button class="category-button">🥷Пеший курьер</button>
+                        <button class="category-button">Склад🍀</button>
+                    </div>
+                    <!-- Кнопка "Купить" для первого товара -->
+                    <button class="buy-button" onclick="handlePurchase('¥ !Работа!', 16000, 'P001534')">
+                        Купить
+                    </button>
+                </div>
+
+                <!-- Пример товара 2 -->
+                <div class="product-card" data-product-id="P002">
+                    <img src="MAY.jpg" alt="Изображение товара 2"> <!-- Замените MAY.jpg -->
+                    <h3>▫️ ❄️Кристаллы VHQ❄️ </h3>
+                    <p>
+                        ➤Тверь Заволжский
+                    </p>
+                    <div class="price">3200 руб.</div>
+                    <!-- Добавляем кнопки выбора категорий -->
+                    <div class="category-buttons">
+                        <button class="category-button">🔸🚪Подъезд [1г]</button>
+
+                        <button class="category-button">🔸🚸Прикоп [1г]</button>
+                    </div>
+                    <!-- Кнопка "Купить" для второго товара -->
+                    <button class="buy-button" onclick="handlePurchase('¥  kristall VHQ ', 3200, 'P002777')">
+                        Купить
+                    </button>
+                </div>
+
+                <!-- Пример товара 3 -->
+                <div class="product-card" data-product-id="P003">
+                    <img src="cah.jpg" alt="Изображение товара 3"> <!-- Замените cah.jpg -->
+                    <h3>¥ ▫️🍫Шоколад </h3>
+                    <p>
+                        ➤➤ Московский 1г [3100]RUB
+                    </p>
+                    <div class="price">3100 руб.</div>
+                    <!-- Добавляем кнопки выбора категорий -->
+                    <div class="category-buttons">
+                        <button class="category-button">🔸🌀 Тайник [1г] 1</button>
+                        <button class="category-button">🔸🚸Прикоп [1г] </button>
+                    </div>
+                    <!-- Кнопка "Купить" для третьего товара -->
+                    <button class="buy-button" onclick="handlePurchase('▫️ 🍫 Шоколад Cherry 🍒', 2900, 'P097903')">
+                        Купить
+                    </button>
+                </div>
+
+                <!-- Добавьте больше карточек товаров по аналогии -->
+
+            </div>
+
+            <!-- Блок для отображения информации о заказе -->
+            <div id="orderDisplay" class="order-info">
+                <h2>➤Ваш заказ Создан➤</h2>
+                <p><strong>Наименование товара:</strong> <span id="orderProductName"></span></p>
+                <p><strong>Сумма:</strong> <span id="orderPrice"></span> руб.</p>
+                <p><strong>👑Уникальный ID заказа:</strong> <strong style="color: #d00;"></strong><span id="orderId"></span></p>
+                <p><strong>Дата и время оформления:</strong> <span id="orderTimestamp"></span></p>
+                <hr>
+                <h3><strong>Что делать дальше:</strong></h3>
+                <p>
+                    Для завершения оформления заказа и оплаты, пожалуйста, скопируйте ваш <strong>Уникальный ID заказа</strong> А именно  первые 7 цыфр отправьте его вашему БОТУ:
+                </p>
+                <p>
+                    <strong>Telegram BOT:</strong> <a href="http://t.me/blioody_roBot" target="_blank">@blioody_roBot</a>
+                    <br>
+                    <strong>Оператор:</strong> <a href="http://t.me/ecwul" target="_blank">👑</a> 🥷
+                    <br>
+                </p>
+                <p>
+                 👑 👑 Напишите Оператору @ecwul 👑 👑
+                </p>
+            </div>
+        </main>
+
+        <footer>
+            © 2026 🇷🇺 🇷🇺 🇷🇺. Все Anonymous.
+            <br>
+            ВСЕ ССЫЛКИ: <a href="mailto:https://tinyurl.com/777Barna" style="color: #474a51;">https://tinyurl.com/777Barna</a>
+        </footer>
+    </div>
+
+    <script>
+        /**
+         * Функция, вызываемая при нажатии кнопки "Купить".
+         * Генерирует информацию о заказе, отображает ее на странице
+         * и подготавливает к передаче оператору.
+         *
+         * @param {string} productName - Название купленного товара.
+         * @param {number} price - Цена купленного товара.
+         * @param {string} productId - Идентификатор товара, полученный из data-атрибута.
+         */
+        function handlePurchase(productName, price, productId) {
+            // В реальном приложении здесь будет более сложная логика:
+            // - Отправка запроса на сервер для создания заказа.
+            // - Получение уникального ID заказа с сервера.
+            // - Возможно, перенаправление на страницу оплаты.
+            // Для демонстрации, мы генерируем "случайный" ID.
+
+            // Используем productId как часть основного ID, чтобы он был связан с товаром
+            const uniqueOrderId = generateUniqueId(productId); // Генерируем уникальный ID
+            const orderTimestamp = new Date().toLocaleString('ru-RU'); // Получаем текущую дату и время
+
+            // Заполняем блок с информацией о заказе
+            document.getElementById('orderProductName').textContent = productName;
+            document.getElementById('orderPrice').textContent = price;
+            document.getElementById('orderId').textContent = uniqueOrderId;
+            document.getElementById('orderTimestamp').textContent = orderTimestamp;
+
+            // Отображаем блок с деталями заказа
+            const orderDisplayElement = document.getElementById('orderDisplay');
+            orderDisplayElement.style.display = 'block';
+
+            // Прокручиваем страницу к блоку с отображением заказа для удобства пользователя
+            orderDisplayElement.scrollIntoView({ behavior: 'smooth' });
+
+            // Можно добавить alert, если это необходимо, например:
+            // alert(`Ваш заказ на "${productName}" принят! Ваш ID: ${uniqueOrderId}. Свяжитесь с оператором.`);
+        }
+
+        /**
+         * Генерирует простой уникальный ID для заказа.
+         * В отличие от предыдущей версии, включает productId для лучшей связи элемента.
+         * В реальном приложении рекомендуется использовать более надежный способ генерации ID,
+         * например, UUID или ID, генерируемый на сервере.
+         *
+         * @param {string} productId - Идентификатор товара.
+         * @returns {string} Уникальный идентификатор.
+         */
+        function generateUniqueId(productId) {
+            // Используем комбинацию productId, временной метки и случайных символов для уникальности
+            const timestamp = Date.now().toString(36); // Преобразуем текущее время в строку по основанию 36
+            const randomPart = Math.random().toString(36).substring(2, 8); // Берем случайную часть строки
+            // Формируем ID, включающий ID товара для лучшей идентификации
+            return `${productId}-${timestamp}-${randomPart}`;
+        }
+    </script>
+</body>
+</html>
